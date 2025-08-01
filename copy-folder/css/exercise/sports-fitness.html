@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitLife - Sports & Fitness</title>
+    <style>
+        /* Reset and Base Styles */
+        *,
+        ::before,
+        ::after {
+            padding: 0;
+            margin: 0;
+            transition: 0.3s;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #1a73e8;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #ffcc00;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/img/everything-you-need-know-about-fitness-1440x810.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .btn {
+            display: inline-block;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background-color: #e6b800;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Categories Section */
+        .categories {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: #1a73e8;
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            margin: 15px auto 0;
+        }
+
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background-color: #f1f3f5;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .category-btn:hover {
+            background-color: #e9ecef;
+        }
+
+        .category-btn.active {
+            background-color: #1a73e8;
+            color: white;
+        }
+
+        .exercises-grid {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+        }
+
+        .exercise-card {
+            flex: 0 0 calc(33.333% - 30px);
+            margin: 0 15px 30px;
+            background-color: white;
+            border-radius: 20px; /* Increased border-radius */
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .exercise-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .exercise-img {
+            height: 220px;
+            overflow: hidden;
+            border-radius: 20px 20px 0 0; /* Added border-radius to top of image container */
+        }
+
+        .exercise-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+            border-radius: 20px 20px 0 0; /* Added border-radius to images */
+        }
+
+        .exercise-card:hover .exercise-img img {
+            transform: scale(1.1);
+        }
+
+        .exercise-info {
+            padding: 20px;
+        }
+
+        .exercise-info h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #1a73e8;
+            padding: 8px 15px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .exercise-meta {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+            font-size: 14px;
+            color: #6c757d;
+            padding: 5px 10px;
+            border-radius: 8px;
+            color: #333;
+        }
+
+        .exercise-desc {
+            margin-bottom: 20px;
+            color: #495057;
+            line-height: 1.6;
+            padding: 10px;
+            border-radius: 8px;
+            color: #333;
+        }
+
+        .view-btn {
+            display: inline-block;
+            background-color: #1a73e8;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 10px; /* Increased border-radius */
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .view-btn:hover {
+            background-color: #1557b0;
+        }
+
+        /* Exercise Details Modal */
+        .exercise-details {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 50px 0;
+        }
+
+        .exercise-details-content {
+            background-color: white;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 20px; /* Increased border-radius */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            z-index: 10;
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+            transform: scale(1.1);
+        }
+
+        .exercise-details-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px 20px 0 0; /* Added border-radius to modal image */
+        }
+
+        .exercise-details-info {
+            padding: 30px;
+        }
+
+        .exercise-details-info h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #1a73e8;
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .exercise-info-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 15px; /* Increased border-radius */
+        }
+
+        .exercise-info-item {
+            text-align: center;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #1a73e8;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .exercise-details-info h3 {
+            font-size: 24px;
+            margin: 30px 0 15px;
+            color: #1a73e8;
+            padding: 8px 15px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .steps-list {
+            padding-left: 20px;
+        }
+
+        .steps-list li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 15px;
+            padding: 10px 15px 10px 30px;
+            border-radius: 10px;
+            color: #333;
+        }
+
+        .steps-list li::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 18px;
+            width: 8px;
+            height: 8px;
+            background-color: #1a73e8;
+            border-radius: 50%;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            background-color: #1a73e8;
+            color: white;
+            padding: 80px 0;
+        }
+
+        .benefits .section-title h2 {
+            color: white;
+        }
+
+        .benefits .section-title::after {
+            background-color: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .benefit-item {
+            text-align: center;
+            padding: 30px;
+            background-color: gold; /* Changed to gold background */
+            border-radius: 20px; /* Increased border-radius */
+            transition: transform 0.3s;
+            color: #333;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .benefit-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .benefit-item h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #212529;
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: #343a40;
+            border-radius: 50%;
+            margin-right: 10px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: #1a73e8;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #343a40;
+            color: #adb5bd;
+            font-size: 14px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .exercise-card {
+                flex: 0 0 calc(50% - 30px);
+            }
+
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+
+            nav ul {
+                margin-top: 20px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .exercise-info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .exercise-card {
+                flex: 0 0 calc(100% - 30px);
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Header Section -->
+        <header>
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">Fit<span>Life</span></div>
+                    <nav>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#exercises">Exercises</a></li>
+                            <li><a href="#benefits">Benefits</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Transform Your Body, Transform Your Life</h1>
+                <p>Discover effective exercises and workout routines to help you achieve your fitness goals and live a healthier lifestyle.</p>
+                <a href="#exercises" class="btn">Explore Exercises</a>
+            </div>
+        </section>
+
+        <!-- Exercises Section -->
+        <section class="categories" id="exercises">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Featured Exercises</h2>
+                </div>
+
+                <div class="category-filter">
+                    <button class="category-btn active" data-category="all">All</button>
+                    <button class="category-btn" data-category="strength">Strength</button>
+                    <button class="category-btn" data-category="cardio">Cardio</button>
+                    <button class="category-btn" data-category="flexibility">Flexibility</button>
+                    <button class="category-btn" data-category="balance">Balance</button>
+                </div>
+
+                <div class="exercises-grid">
+                    <!-- Exercise Card 1 -->
+                    <div class="exercise-card" data-category="strength">
+                        <div class="exercise-img">
+                            <img src="/img/sphinx-push-up-benefits.png" alt="Push-ups">
+                        </div>
+                        <div class="exercise-info">
+                            <h3>Push-ups</h3>
+                            <div class="exercise-meta">
+                                <div class="meta-item">Difficulty: Intermediate</div>
+                                <div class="meta-item">Time: 10 mins</div>
+                            </div>
+                            <p class="exercise-desc">A classic bodyweight exercise that targets your chest, shoulders, and triceps while engaging your core.</p>
+                            <a href="#" class="view-btn" data-exercise="pushups">View Exercise</a>
+                        </div>
+                    </div>
+
+                    <!-- Exercise Card 2 -->
+                    <div class="exercise-card" data-category="cardio">
+                        <div class="exercise-img">
+                            <img src="/img/pb20250407_2114535-r41zeaqse6no0romnv8sbq8y9bl5napatc3z3i9uzs.jpg" alt="Running">
+                        </div>
+                        <div class="exercise-info">
+                            <h3>Interval Running</h3>
+                            <div class="exercise-meta">
+                                <div class="meta-item">Difficulty: Moderate</div>
+                                <div class="meta-item">Time: 20 mins</div>
+                            </div>
+                            <p class="exercise-desc">High-intensity interval training that alternates between sprints and recovery periods to maximize calorie burn.</p>
+                            <a href="#" class="view-btn" data-exercise="running">View Exercise</a>
+                        </div>
+                    </div>
+
+                    <!-- Exercise Card 3 -->
+                    <div class="exercise-card" data-category="flexibility">
+                        <div class="exercise-img">
+                            <img src="/img/7762bbad-5aba-436c-a2bf-4b04ee0e81e3.jpg" alt="Yoga">
+                        </div>
+                        <div class="exercise-info">
+                            <h3>Yoga Flow</h3>
+                            <div class="exercise-meta">
+                                <div class="meta-item">Difficulty: Beginner</div>
+                                <div class="meta-item">Time: 30 mins</div>
+                            </div>
+                            <p class="exercise-desc">A sequence of yoga poses that improve flexibility, balance, and mental focus while reducing stress.</p>
+                            <a href="#" class="view-btn" data-exercise="yoga">View Exercise</a>
+                        </div>
+                    </div>
+
+                    <!-- Exercise Card 4 -->
+                    <div class="exercise-card" data-category="strength">
+                        <div class="exercise-img">
+                            <img src="/img/do-squats-make-your-butt-bigger.jpg" alt="Squats">
+                        </div>
+                        <div class="exercise-info">
+                            <h3>Squats</h3>
+                            <div class="exercise-meta">
+                                <div class="meta-item">Difficulty: Intermediate</div>
+                                <div class="meta-item">Time: 15 mins</div>
+                            </div>
+                            <p class="exercise-desc">A fundamental lower body exercise that targets your quadriceps, hamstrings, and glutes while improving mobility.</p>
+                            <a href="#" class="view-btn" data-exercise="squats">View Exercise</a>
+                        </div>
+                    </div>
+
+                    <!-- Exercise Card 5 -->
+                    <div class="exercise-card" data-category="cardio">
+                        <div class="exercise-img">
+                            <img src="/img/stock-vector-jumping-jacks-exercise-girl-workout-silhouettes-star-jumps-illustration-a-young-woman-in-1633713496.jpg" alt="Jumping Jacks">
+                        </div>
+                        <div class="exercise-info">
+                            <h3>Jumping Jacks</h3>
+                            <div class="exercise-meta">
+                                <div class="meta-item">Difficulty: Beginner</div>
+                                <div class="meta-item">Time: 10 mins</div>
+                            </div>
+                            <p class="exercise-desc">A simple yet effective full-body cardio exercise that increases heart rate and improves coordination.</p>
+                            <a href="#" class="view-btn" data-exercise="jumping-jacks">View Exercise</a>
+                        </div>
+                    </div>
+
+                    <!-- Exercise Card 6 -->
+                    <div class="exercise-card" data-category="balance">
+                        <div class="exercise-img">
+                            <img src="/img/GRT-balance-board-1200x628-facebook.avif" alt="Balance Board">
+                        </div>
+                        <div class="exercise-info">
+                            <h3>Balance Board Training</h3>
+                            <div class="exercise-meta">
+                                <div class="meta-item">Difficulty: Advanced</div>
+                                <div class="meta-item">Time: 15 mins</div>
+                            </div>
+                            <p class="exercise-desc">Improves stability, coordination, and core strength through challenging balance exercises on an unstable surface.</p>
+                            <a href="#" class="view-btn" data-exercise="balance-board">View Exercise</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits" id="benefits">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Benefits of Regular Exercise</h2>
+                </div>
+
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">💪</div>
+                        <h3>Increased Strength</h3>
+                        <p>Regular strength training helps build muscle mass, increase bone density, and improve overall physical performance.</p>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon">❤️</div>
+                        <h3>Heart Health</h3>
+                        <p>Cardiovascular exercise strengthens your heart, lowers blood pressure, and reduces the risk of heart disease.</p>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon">😊</div>
+                        <h3>Mental Wellbeing</h3>
+                        <p>Physical activity releases endorphins that reduce stress, anxiety, and depression while improving mood and sleep quality.</p>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon">⚡</div>
+                        <h3>Increased Energy</h3>
+                        <p>Regular exercise improves circulation and oxygen delivery, boosting energy levels and reducing fatigue.</p>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🧠</div>
+                        <h3>Cognitive Function</h3>
+                        <p>Exercise enhances brain function, memory, and focus while potentially reducing the risk of cognitive decline.</p>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon">⏱️</div>
+                        <h3>Longevity</h3>
+                        <p>Consistent physical activity is associated with a longer, healthier life and reduced risk of chronic diseases.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-column">
+                        <h3>FitLife</h3>
+                        <p>Your ultimate resource for fitness information, workout routines, and exercise guides to help you achieve your health goals.</p>
+                        <div class="social-links">
+                            <a href="#">FB</a>
+                            <a href="#">IG</a>
+                            <a href="#">TW</a>
+                            <a href="#">YT</a>
+                        </div>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#exercises">Exercises</a></li>
+                            <li><a href="#benefits">Benefits</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>Exercise Categories</h3>
+                        <ul>
+                            <li><a href="#">Strength Training</a></li>
+                            <li><a href="#">Cardio Workouts</a></li>
+                            <li><a href="#">Flexibility & Yoga</a></li>
+                            <li><a href="#">Balance & Stability</a></li>
+                            <li><a href="#">HIIT Workouts</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>Contact Us</h3>
+                        <ul>
+                            <li>Email: info@fitlife.com</li>
+                            <li>Phone: (123) 456-7890</li>
+                            <li>Address: 123 Fitness Street, Healthy City</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="copyright">
+                    <p>&copy; 2025 FitLife. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Exercise Details Modals -->
+        <!-- Push-ups Details -->
+        <div class="exercise-details" id="pushups-details">
+            <div class="exercise-details-content">
+                <button class="close-btn">&times;</button>
+                <img src="/img/sphinx-push-up-benefits.png" alt="Push-ups" class="exercise-details-image">
+                <div class="exercise-details-info">
+                    <h2>Push-ups</h2>
+                    
+                    <div class="exercise-info-grid">
+                        <div class="exercise-info-item">
+                            <div class="info-label">Difficulty</div>
+                            <div>Intermediate</div>
+                        </div>
+                        <div class="exercise-info-item">
+                            <div class="info-label">Time</div>
+                            <div>10 minutes</div>
+                        </div>
+                        <div class="exercise-info-item">
+                            <div class="info-label">Target Muscles</div>
+                            <div>Chest, Shoulders, Triceps</div>
+                        </div>
+                        <div class="exercise-info-item">
+                            <div class="info-label">Equipment</div>
+                            <div>None</div>
+                        </div>
+                    </div>
+                    
+                    <h3>Description</h3>
+                    <p>Push-ups are a classic bodyweight exercise that primarily targets the chest, shoulders, and triceps while also engaging the core and other stabilizing muscles. They're an excellent compound movement for building upper body strength and can be modified to suit different fitness levels.</p>
+                    
+                    <h3>How to Perform</h3>
+                    <ol class="steps-list">
+                        <li>Start in a plank position with your hands slightly wider than shoulder-width apart, arms straight, and body forming a straight line from head to heels.</li>
+                        <li>Keep your core engaged and glutes tight to maintain proper alignment.</li>
+                        <li>Lower your body by bending your elbows until your chest nearly touches the floor. Keep your elbows at about a 45-degree angle to your body.</li>
+                        <li>Push through your palms to extend your arms and return to the starting position.</li>
+                        <li>Maintain a straight body throughout the movement, avoiding sagging hips or arched back.</li>
+                        <li>Repeat for the desired number of repetitions, aiming for 3 sets of 10-15 reps with proper form.</li>
+                    </ol>
+                    
+                    <h3>Modifications</h3>
+                    <ul class="steps-list">
+                        <li><strong>Beginner:</strong> Perform push-ups with knees on the ground to reduce resistance.</li>
+                        <li><strong>Intermediate:</strong> Standard push-ups as described above.</li>
+                        <li><strong>Advanced:</strong> Elevate your feet on a bench or perform clapping push-ups for increased difficulty.</li>
+                    </ul>
+                    
+                    <h3>Tips</h3>
+                    <ul class="steps-list">
+                        <li>Keep your body in a straight line from head to heels throughout the movement.</li>
+                        <li>Focus on quality over quantity—perfect form is more important than high repetitions.</li>
+                        <li>Breathe out as you push up, breathe in as you lower down.</li>
+                        <li>If you experience wrist discomfort, try using push-up handles or perform the exercise on your knuckles.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Running Details -->
+        <div class="exercise-details" id="running-details">
+            <div class="exercise-details-content">
+                <button class="close-btn">&times;</button>
+                <img src="/img/pb20250407_2114535-r41zeaqse6no0romnv8sbq8y9bl5napatc3z3i9uzs.jpg" alt="Running" class="exercise-details-image">
+                <div class="exercise-details-info">
+                    <h2>Interval Running</h2>
+                    
+                    <div class="exercise-info-grid">
+                        <div class="exercise-info-item">
+                            <div class="info-label">Difficulty</div>
+                            <div>Moderate</div>
+                        </div>
+                        <div class="exercise-info-item">
+                            <div class="info-label">Time</div>
+                            <div>20 minutes</div>
+                        </div>
+                        <div class="exercise-info-item">
+                            <div class="info-label">Target Muscles</div>
+                            <div>Legs, Cardiovascular System</div>
+                        </div>
+                        <div class="exercise-info-item">
+                            <div class="info-label">Equipment</div>
+                            <div>Running Shoes</div>
+                        </div>
+                    </div>
+                    
+                    <h3>Description</h3>
+                    <p>Interval running is a high-intensity cardio workout that alternates between periods of intense running and recovery periods of jogging or walking. This training method helps improve cardiovascular fitness, burn calories efficiently, and increase endurance.</p>
+                    
+                    <h3>How to Perform</h3>
+                    <ol class="steps-list">
+                        <li>Begin with a 5-minute warm-up of light jogging or brisk walking.</li>
+                        <li>Sprint at 80-90% of your maximum effort for 30 seconds.</li>
+                        <li>Recover with a slow jog or walk for 60-90 seconds.</li>
+                        <li>Repeat this sprint-recovery cycle 8-10 times.</li>
+                        <li>Finish with a 5-minute cool-down of easy jogging and stretching.</li>
+                    </ol>
+                    
+                    <h3>Modifications</h3>
+                    <ul class="steps-list">
+                        <li><strong>Beginner:</strong> Start with shorter sprint intervals (15-20 seconds) and longer recovery periods (2 minutes).</li>
+                        <li><strong>Intermediate:</strong> 30-second sprints with 60-90 second recovery as described above.</li>
+                        <li><strong>Advanced:</strong> Increase sprint duration to 45-60 seconds with shorter recovery periods (45 seconds).</li>
+                    </ul>
+                    
+                    <h3>Tips</h3>
+                    <ul class="steps-list">
+                        <li>Focus on proper running form with a slight forward lean and relaxed shoulders.</li>
+                        <li>Land midfoot rather than on your heels to reduce impact.</li>
+                        <li>Stay hydrated before, during, and after your workout.</li>
+                        <li>Perform on varied terrain for additional challenge and to engage different muscles.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Yoga Details -->
+        <div class="exercise-details" id="yoga-details">
+            <div class="exercise-details-content">
+                <button class="close-btn">&times;</button>
+                <img src="/img/7762bbad-5aba-436c-a2bf-4b04ee0e81e3.jpg" alt="Yoga" class="exercise-details-image">
+                <div class="exercise-details-info">
+                    <h2>Yoga Flow</h2>
+                    
+                    <div class="exercise-info-grid">
+                        <div class="exercise-info-item">
+                            <div class="info-label">Difficulty</div>
+                            <div>Beginner</div>
+                        </div>
+                        <div class="exercise-info-item">
+                            <div class="info-label">Time</div>
+                            <div>30 minutes</div>
+                        </div>
+                        <div class="exercise-info-item">
+                            <div class="info-label">Target Muscles</div>
+                            <div>Full Body, Core</div>
+                        </div>
+                        <div class="exercise-info-item">
+                            <div class="info-label">Equipment</div>
+                            <div>Yoga Mat</div>
+                        </div>
+                    </div>
+                    
+                    <h3>Description</h3>
+                    <p>Yoga Flow, also known as Vinyasa Yoga, is a practice that connects breath with movement through a series of poses. This flowing style of yoga improves flexibility, strength, and mental focus while reducing stress and promoting mindfulness.</p>
+                    
+                    <h3>How to Perform</h3>
+                    <ol class="steps-list">
+                        <li>Begin in a comfortable seated position with eyes closed, focusing on deep breathing for 2-3 minutes.</li>
+                        <li>Move into a series of Sun Salutations, synchronizing breath with each movement.</li>
+                        <li>Flow through standing poses such as Warrior I, Warrior II, and Triangle Pose, holding each for 3-5 breaths.</li>
+                        <li>Transition to floor poses including seated forward folds and gentle twists.</li>
+                        <li>End with 5 minutes in Savasana (Corpse Pose) for deep relaxation.</li>
+                    </ol>
+                    
+                    <h3>Modifications</h3>
+                    <ul class="steps-list">
+                        <li><strong>Beginner:</strong> Use props like blocks and straps to support proper alignment.</li>
+                        <li><strong>Intermediate:</strong> Deepen poses and extend hold times to 5-8 breaths.</li>
+                        <li><strong>Advanced:</strong> Add challenging variations and transitions between poses.</li>
+                    </ul>
+                    
+                    <h3>Tips</h3>
+                    <ul class="steps-list">
+                        <li>Focus on your breath throughout the practice, using it as an anchor for your attention.</li>
+                        <li>Move at your own pace and respect your body's limitations.</li>
+                        <li>Practice on an empty stomach, ideally 2-3 hours after eating.</li>
+                        <li>Consistency is key—aim for regular practice rather than occasional intense sessions.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Squats Details -->
+        <div class="exercise-details" id="squats-details">
+            <div class="exercise-details-content">
+                <button class="close-btn">&times;</button>
+                <img src="/img/do-squats-make-your-butt-bigger.jpg" alt="Squats" class="exercise-details-image">
+                <div class="exercise-details-info">
+                    <h2>Squats</h2>
+                    
+                    <div class="exercise-info-grid">
+                        <div class="exercise-info-item">
+                            <div class="info-label">Difficulty</div>
+                            <div>Intermediate</div>
+                        </div>
+                        <div class="exercise-info-item">
+                            <div class="info-label">Time</div>
+                            <div>15 minutes</div>
+                        </div>
+                        <div class="exercise-info-item">
+                            <div class="info-label">Target Muscles</div>
+                            <div>Quadriceps, Hamstrings, Glutes</div>
+                        </div>
+                        <div class="exercise-info-item">
+                            <div class="info-label">Equipment</div>
+                            <div>None (Bodyweight)</div>
+                        </div>
+                    </div>
+                    
+                    <h3>Description</h3>
+                    <p>Squats are a fundamental lower body exercise that targets multiple muscle groups simultaneously. This compound movement improves strength, mobility, and functional fitness while also engaging the core for stability.</p>
+                    
+                    <h3>How to Perform</h3>
+                    <ol class="steps-list">
+                        <li>Stand with feet shoulder-width apart, toes slightly turned out.</li>
+                        <li>Keep your chest up and core engaged, with arms extended forward for balance.</li>
+                        <li>Bend your knees and push your hips back as if sitting in a chair.</li>
+                        <li>Lower until your thighs are parallel to the ground (or as low as comfortable with proper form).</li>
+                        <li>Drive through your heels to return to the starting position.</li>
+                        <li>Repeat for 3 sets of 12-15 repetitions.</li>
+                    </ol>
+                    
+                    <h3>Modifications</h3>
+                    <ul class="steps-list">
+                        <li><strong>Beginner:</strong> Perform partial squats or use a chair for support.</li>
+                        <li><strong>Intermediate:</strong> Full bodyweight squats as described above.</li>
+                        <li><strong>Advanced:</strong> Add resistance with dumbbells, a barbell, or try single-leg variations.</li>
+                    </ul>
+                    
+                    <h3>Tips</h3>
+                    <ul class="steps-list">
+                        <li>Keep your weight in your heels and mid-foot, not your toes.</li>
+                        <li>Ensure your knees track in line with your toes, not caving inward.</li>
+                        <li>Maintain a neutral spine throughout the movement.</li>
+                        <li>Focus on depth with proper form rather than quantity of repetitions.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Jumping Jacks Details -->
+        <div class="exercise-details" id="jumping-jacks-details">
+            <div class="exercise-details-content">
+                <button class="close-btn">&times;</button>
+                <img src="/img/stock-vector-jumping-jacks-exercise-girl-workout-silhouettes-star-jumps-illustration-a-young-woman-in-1633713496.jpg" alt="Jumping Jacks" class="exercise-details-image">
+                <div class="exercise-details-info">
+                    <h2>Jumping Jacks</h2>
+                    
+                    <div class="exercise-info-grid">
+                        <div class="exercise-info-item">
+                            <div class="info-label">Difficulty</div>
+                            <div>Beginner</div>
+                        </div>
+                        <div class="exercise-info-item">
+                            <div class="info-label">Time</div>
+                            <div>10 minutes</div>
+                        </div>
+                        <div class="exercise-info-item">
+                            <div class="info-label">Target Muscles</div>
+                            <div>Full Body, Cardiovascular</div>
+                        </div>
+                        <div class="exercise-info-item">
+                            <div class="info-label">Equipment</div>
+                            <div>None</div>
+                        </div>
+                    </div>
+                    
+                    <h3>Description</h3>
+                    <p>Jumping jacks are a classic cardio exercise that elevates your heart rate while engaging multiple muscle groups. This simple yet effective movement improves coordination, increases circulation, and serves as an excellent warm-up or cardio interval.</p>
+                    
+                    <h3>How to Perform</h3>
+                    <ol class="steps-list">
+                        <li>Stand with feet together and arms at your sides.</li>
+                        <li>Jump while spreading your legs wider than shoulder-width apart.</li>
+                        <li>Simultaneously raise your arms above your head, ideally touching hands at the top.</li>
+                        <li>Jump again to return to the starting position, bringing your feet together and arms back to your sides.</li>
+                        <li>Repeat at a steady pace for 30-60 seconds per set.</li>
+                    </ol>
+                    
+                    <h3>Modifications</h3>
+                    <ul class="steps-list">
+                        <li><strong>Beginner:</strong> Perform at a slower pace or step out to the sides instead of jumping.</li>
+                        <li><strong>Intermediate:</strong> Standard jumping jacks at a moderate to fast pace.</li>
+                        <li><strong>Advanced:</strong> Try plyo jacks (adding a deeper squat) or cross jacks (crossing arms and legs).</li>
+                    </ul>
+                    
+                    <h3>Tips</h3>
+                    <ul class="steps-list">
+                        <li>Land softly with slightly bent knees to reduce impact.</li>
+                        <li>Maintain a consistent rhythm and controlled breathing.</li>
+                        <li>Keep your core engaged throughout the exercise.</li>
+                        <li>For longer sessions, break into intervals (30 seconds on, 10 seconds rest).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Balance Board Details -->
+        <div class="exercise-details" id="balance-board-details">
+            <div class="exercise-details-content">
+                <button class="close-btn">&times;</button>
+                <img src="/img/GRT-balance-board-1200x628-facebook.avif" alt="Balance Board" class="exercise-details-image">
+                <div class="exercise-details-info">
+                    <h2>Balance Board Training</h2>
+                    
+                    <div class="exercise-info-grid">
+                        <div class="exercise-info-item">
+                            <div class="info-label">Difficulty</div>
+                            <div>Advanced</div>
+                        </div>
+                        <div class="exercise-info-item">
+                            <div class="info-label">Time</div>
+                            <div>15 minutes</div>
+                        </div>
+                        <div class="exercise-info-item">
+                            <div class="info-label">Target Muscles</div>
+                            <div>Core, Ankles, Stabilizers</div>
+                        </div>
+                        <div class="exercise-info-item">
+                            <div class="info-label">Equipment</div>
+                            <div>Balance Board</div>
+                        </div>
+                    </div>
+                    
+                    <h3>Description</h3>
+                    <p>Balance board training challenges your stability and proprioception by requiring you to maintain balance on an unstable surface. This advanced exercise strengthens small stabilizing muscles, improves coordination, and enhances overall athletic performance.</p>
+                    
+                    <h3>How to Perform</h3>
+                    <ol class="steps-list">
+                        <li>Place the balance board on a non-slip surface with enough space around you.</li>
+                        <li>Carefully step onto the board with feet shoulder-width apart.</li>
+                        <li>Find your center of gravity and attempt to keep the board level for 30-60 seconds.</li>
+                        <li>Progress to gentle tilting in different directions while maintaining control.</li>
+                        <li>For added challenge, try simple movements like squats or arm raises while balancing.</li>
+                    </ol>
+                    
+                    <h3>Modifications</h3>
+                    <ul class="steps-list">
+                        <li><strong>Beginner:</strong> Start with a less challenging balance tool like a foam pad, or use a wall/support for assistance.</li>
+                        <li><strong>Intermediate:</strong> Practice basic balancing with occasional movements.</li>
+                        <li><strong>Advanced:</strong> Perform exercises like squats, single-leg stands, or even push-ups on the balance board.</li>
+                    </ul>
+                    
+                    <h3>Tips</h3>
+                    <ul class="steps-list">
+                        <li>Focus your gaze on a fixed point to help maintain balance.</li>
+                        <li>Keep your core engaged throughout the exercise.</li>
+                        <li>Start with shorter sessions and gradually increase duration as you improve.</li>
+                        <li>Always prioritize safety—practice near a wall or sturdy object for support if needed.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+    <!-- JavaScript for interactivity -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Category filtering functionality
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const exerciseCards = document.querySelectorAll('.exercise-card');
+            
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Get selected category
+                    const selectedCategory = this.getAttribute('data-category');
+                    
+                    // Show/hide exercise cards based on category
+                    exerciseCards.forEach(card => {
+                        if (selectedCategory === 'all' || card.getAttribute('data-category') === selectedCategory) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Modal functionality
+            const viewBtns = document.querySelectorAll('.view-btn');
+            const closeBtns = document.querySelectorAll('.close-btn');
+            const modals = document.querySelectorAll('.exercise-details');
+            
+            // Open modal when view button is clicked
+            viewBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const exerciseId = this.getAttribute('data-exercise');
+                    const modal = document.getElementById(exerciseId + '-details');
+                    
+                    if (modal) {
+                        modal.style.display = 'block';
+                        document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+                    }
+                });
+            });
+            
+            // Close modal when close button is clicked
+            closeBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const modal = this.closest('.exercise-details');
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Re-enable scrolling
+                });
+            });
+            
+            // Close modal when clicking outside the content
+            window.addEventListener('click', function(e) {
+                modals.forEach(modal => {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+  
+    </style>

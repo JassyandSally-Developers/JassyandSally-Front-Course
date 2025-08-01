@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 800px;
+            box-shadow:  0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            overflow: auto;
+            background-color: gold;
+            min-width: 300px;
+        }
+
+        .left {
+            flex: 1;
+            /* min-width: 300px; */
+            padding: 20px;
+            width: 200px;
+            float: left;
+        }
+
+        .right {
+            flex: 2;
+            /* min-width: 300px; */
+            padding: 20px;
+            width: 500px;
+            float: left;
+        }
+
+        .top, .top2, .medium, .bottom {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: white; 
+            border: 1px solid black;
+            font-size: 13px;
+            font-style: unset;
+        }
+
+        .image {
+            text-align: center;
+            margin-bottom: -30px;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 50%;
+            padding: 20px;
+        }
+
+        h3, h4 {
+            color: black;
+        }
+
+        p {
+            color: black;
+            padding: 9px;
+            
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            color: black;
+            margin-top: 12px;
+        }
+        .information, .ul, .li, b {
+            font-size: 10px;
+            padding: 10px;
+            font-weight: 100   ;
+            color: black;
+        }
+        .bottom, b {
+            font-size: 13px;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="left">
+            <div class="top">
+                <h2 style="text-align: center;">Mithila</h2>
+                <div class="image">
+                    <img src="/img/images.jpg" alt="" width="200px" height="200px">
+                </div>
+                <div style="height: 120px;" class="information">
+                    <nav style="font-size:9px;">
+                        <ul>
+                            <li style="color: rgb(49, 72, 72);" type="none" >
+                                  AGE  <b style="font-size: 11px;">21</b>     
+                            </li>
+                            <li style="color: rgb(49, 72, 72);" type="none">
+                                  GENDER    <b style="font-size: 11px;">FEMALE</b>   
+                            </li>
+                            <li style="color: rgb(49, 72, 72);" type="none">
+                                OCCUPATION  <b style="font-size: 11px;">STUDENT</b>   
+                            </li>
+                            <li style="color: rgb(49, 72, 72);" type="none">
+                                TECH LITERATE <b style="font-size: 11px;">HIGH</b>
+                            </li>
+                    </nav>
+                </div>
+            </div>
+            <div style="height: 80px;" class="bottom">
+                <b style="font-weight: 600;">
+                    "Loving grand daughter, great friend , 
+                    loves new gadgets, and loves to learn 
+                    new things."
+                </b>
+            </div>
+        </div>
+        <div class="right">
+            <div class="top2">
+                <h4>Bio</h4>
+                <p>
+                    She is obtaining a Bachelor of Mass media at BMM collage Bandra, YouTube blogger who posts lifestyle videos as a hobby and she wants to be an actress.
+                </p>
+            </div>
+            <div class="medium">
+                <h4>Core needs</h4>
+                <ul>
+                    <li>
+                        Wants to check her account details anywhere via smartphone.
+                    </li>
+                    <li>
+                        Would you like to avoid unnecessary temptations to spend extra money.
+                    </li>
+                    <li>
+                        Prefers quality and optimized user experience to use services.
+                    </li>
+                </ul>
+            </div>
+            <div class="bottom">
+                <h4>Frustrations</h4>
+                <ul>
+                    <li>
+                        Trying to find time to shop for items life food, clothes and etc.
+                    </li>
+                    <li>
+                        Slow web apps which does not satisfy her tidy schedule.
+                    </li>
+                    <li>
+                        Speed and care by which the purchased items are delivered.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

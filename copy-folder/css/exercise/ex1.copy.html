@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <p><a href="#">Link 1</a></p>
+        <p><a href="#">Link 2</a></p>
+        <p><a href="#">Link 3</a></p>
+    </div>
+</body>
+<style>
+    :root {
+        transition: all 1s ease;
+    }
+    *{
+        transition: 1s;
+    }
+    body{
+        background: url(/img/Garlic-Parmesan-Chicken-Pasta-1.jpg) no-repeat ;
+        background-blend-mode: darken;
+        background-color: rgba(0, 0, 0, 0.251);
+        background-size: cover;
+        background-position: center;
+    }
+    div{
+        margin: 180px auto;
+        width: 30%;
+        padding: 90px 0;
+        font-size: 30px;
+        position: relative;
+
+    }
+    p{
+        background-color: rgba(211, 211, 211, 0.4);
+        height: 40px;
+        width: 430px;
+        margin: 15px 0;
+        
+    }
+    a{
+        text-decoration: none;
+        color: white;
+        background-color: rgb(0, 128, 0, 0.564);
+        margin: 0 40px;
+        display: inline-block;
+
+    }
+    p:hover::before,
+    p:hover::after{
+        content: "";
+        position: absolute;
+        width: 45px;
+        height: 30px;
+        background: url(/img/yyyyyyyyyyy.webp) no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+    p:hover{
+        margin: 25px;
+    }
+    p:hover::before{
+        left: -15px;
+    }
+    p:hover::after{
+        right: -15px;
+    }
+
+        
+
+</style>
+</html>

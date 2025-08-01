@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ol>
+        <li>Test text</li>
+        <li>Test text</li>
+        <li>Test text</li>
+        <li>Test text</li>
+        <li>Test text</li>
+        <li>Test text</li>
+        <li>Test text</li>
+        <li>Test text</li>
+        <li>Test text</li>
+        <li>Test text</li>
+    </ol>
+</body>
+<style>
+    *{
+        transition: 1s;
+    }
+    ol{
+        list-style-type: armenian;
+    }
+    li:hover{
+    position: relative;
+    color: white;
+    background: url(/img/Chinese-Cooking-Hacks.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: darken;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    width: 75px;
+    padding: 10px;
+    }
+    li:hover::before{
+        content: "😶‍🌫️";
+        left: -25px;
+        position: absolute;
+    }
+</style>
+</html>

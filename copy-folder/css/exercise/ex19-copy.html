@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <div class="block1">
+            <img src="/img/American Pancakes - 4.3 landscape-8901.webp" alt="" width="100px" height="100px">
+            <img src="/img/American Pancakes - 4.3 landscape-8901.webp" alt="" width="100px" height="100px">
+            <img src="/img/American Pancakes - 4.3 landscape-8901.webp" alt="" width="100px" height="100px">
+        </div>
+        <div class="block2">
+            <img src="/img/American Pancakes - 4.3 landscape-8901.webp" alt="" width="100px" height="100px">
+            <img src="/img/American Pancakes - 4.3 landscape-8901.webp" alt="" width="100px" height="100px">
+            <img src="/img/American Pancakes - 4.3 landscape-8901.webp" alt="" width="100px" height="100px">
+        </div>
+    </main>
+</body>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        transition: 1s;
+    }
+    body{
+        background-color: black;
+    }
+    main{
+        background: url(/img/Bean-avocado-toast-1-1320x880.jpg) center/cover no-repeat;
+        background-blend-mode:darken;
+        background-color: rgba(0, 0, 0, 0.473);
+        margin: 20px auto;
+        width:600px;
+        border-radius: 20px;
+    }
+    .block1 img:nth-child(3),
+    .block2 img:nth-child(3){
+        border-radius: 50%;
+        opacity: 0.5;
+        box-shadow: 0px 0px 20px 10px green;
+    }
+    .block1 img:nth-child(2),
+    .block2 img:nth-child(2){
+        visibility: hidden;
+    }
+    .block1 {
+        text-align: center;
+    }
+    .block2 img{
+        display: block;
+        margin: 5px 0;
+    }
+    main:hover .block1 img:nth-child(2),
+    main:hover .block2 img:nth-child(2){
+        visibility: visible;
+    }
+    .block1 img:nth-child(2):hover,
+    .block2 img:nth-child(2):hover{
+        width: 150px;
+        height: 150px;
+        border: 5px solid red;
+        border-radius: 50%;
+    }
+
+</style>
+</html>

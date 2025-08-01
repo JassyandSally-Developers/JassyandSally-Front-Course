@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="grid-item block-1"></div>
+        <div class="grid-item block-2"></div>
+        <div class="grid-item block-3"></div>
+        <div class="grid-item block-4"></div>
+        <div class="grid-item block-5"></div>
+        <div class="grid-item block-6"></div>
+        <div class="grid-item block-7"></div>
+        <div class="grid-item block-8"></div>
+        <div class="grid-item block-9"></div>
+        <div class="grid-item block-10"></div>
+        <div class="grid-item block-11"></div>
+        <div class="grid-item block-12"></div>
+        <div class="grid-item block-13"></div>
+        <div class="grid-item block-14"></div>
+        <div class="grid-item block-15"></div>
+    </div>
+</body>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    body{
+        background-color: #333;
+    }
+    .grid-container{
+        margin: 80px auto;
+        width: 550px;
+        height: 350px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 10px;
+    }
+
+
+
+    .block-1{
+        order: 1;
+    }
+    .block-2{
+        order: 2;
+    }
+    .block-3{
+        order: 3;
+    }
+    .block-4{
+        order:4;
+    }
+    .block-5{
+        order: 5;
+    }
+    .block-6{
+        order: 6;
+    }
+    .block-7{
+        order: 7;
+    }
+    .block-8{
+        order: 8;
+    }
+    .block-9{
+        order: 9;
+    }
+    .block-10{
+        order: 10;
+    }
+    .block-11{
+        order: 11;
+    }
+    .block-12{
+        order: 12;
+    }
+    .block-13{
+        order: 13;
+    }
+    .block-14{
+        order: 14;
+    }
+    .block-15{
+        order: 15;
+    }
+    .block-1, .block-3, .block-5, .block-7 , .block-9, .block-11, .block-13, .block-15{
+        background-color: black;
+    } 
+    .block-2, .block-4, .block-6, .block-8, .block-10, .block-12, .block-14{
+        background-color: white;
+    }
+</style>
+</html>

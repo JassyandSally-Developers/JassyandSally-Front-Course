@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr class="tr1">
+            <td colspan="3">
+                <img src="/img/pepsi-logo.png" alt="" width="100" height="100">
+            </td>
+            <tr class="tr2">
+                <td>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam voluptatum minus ipsa vitae? Facere eaque sapiente tempora molestias accusantium esse numquam, quos distinctio nemo necessitatibus quasi ipsa voluptas optio labore.
+                </td>
+                <td>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam voluptatum minus ipsa vitae? Facere eaque sapiente tempora molestias accusantium esse numquam, quos distinctio nemo necessitatibus quasi ipsa voluptas optio labore.
+                </td>
+                <td>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam voluptatum minus ipsa vitae? Facere eaque sapiente tempora molestias accusantium esse numquam, quos distinctio nemo necessitatibus quasi ipsa voluptas optio labore.
+                </td>
+            </tr>
+            <tr class="tr3">
+                <td>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam voluptatum minus ipsa vitae? Facere eaque sapiente tempora molestias accusantium esse numquam, quos distinctio nemo necessitatibus quasi ipsa voluptas optio labore.
+                </td>
+                <td>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam voluptatum minus ipsa vitae? Facere eaque sapiente tempora molestias accusantium esse numquam, quos distinctio nemo necessitatibus quasi ipsa voluptas optio labore.
+                </td>
+                <td>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam voluptatum minus ipsa vitae? Facere eaque sapiente tempora molestias accusantium esse numquam, quos distinctio nemo necessitatibus quasi ipsa voluptas optio labore.
+                </td>
+            </tr>
+            <tr class="tr4">
+                <td colspan="3">
+                    <img src="/img/pepsi-logo.png" alt="" width="100" height="100">
+                </td>
+        </tr>
+    </table>
+    <style>
+        *{
+            transition: 1s;
+        }
+        .tr4{
+            text-align: right;
+            background-color: grey;
+        }
+        .tr1{
+            background-color: gray;
+        }
+        .tr1 td,
+        .tr4 td{
+            padding: 20px;
+        }
+        .tr1 td img,
+        .tr4 td img{
+            border-radius: 50%;
+        }
+        .tr2 td,
+        .tr3 td{
+            background-color: black;
+            color: snow;
+        }
+        table:hover .tr1 td img,
+        table:hover .tr4 td img{
+            margin: 0 0 0 92%;
+            border: dotted 10px green;
+            width: 125px;
+            height: 125px;
+        }
+        table:hover .tr4 td img{
+            margin: 0 92% 0 0;
+        }
+        table:hover .tr1 td,
+        table:hover .tr4 td {
+            background-color: black;
+    }
+        table:hover .tr2 td,
+        table:hover .tr3 td{
+            padding: 20px;
+            background-color: darkgreen;
+            text-decoration: underline dotted 10px yellow;
+            line-height: 30px;
+            border: 5px solid red;
+            color: black;
+        }
+
+
+    </style>
+</body>
+</html>

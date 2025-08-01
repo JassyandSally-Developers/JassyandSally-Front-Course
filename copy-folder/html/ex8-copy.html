@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="block1">
+        <span>Lorem ipsum dolor sit amet consectetur</span>adipisicing elit. Eligendi eveniet eaque, officia maiores, nulla dolores quasi unde soluta provident mollitia id praesentium quos impedit ducimus voluptatibus sapiente! Minima, hic tempore!
+    </div>
+    <div class="block2">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi eveniet eaque, officia maiores, nulla dolores quasi unde soluta provident mollitia id praesentium quos impedit ducimus voluptatibus sapiente! Minima, hic tempore!
+    </div>
+</body>
+<style>
+    *{
+        transition: 1s;
+    }
+    .block1{
+        margin: 25px;
+        padding: 50px;
+        color: snow;
+        background-color: black;
+    }
+    .block2{
+        margin: 25px;
+        padding: 50px;
+        color: snow;
+        background-color: black;
+    }
+    .block1:hover span{
+        display: inline-block;
+        padding: 20px;
+        border-radius: 20px;
+        background: url(/img/2.jpg) center/ cover no-repeat;
+        color: yellow;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-size: 33px;
+    }
+    .block1:hover{
+        color: magenta;
+        background: url(/img/4.jpg) center/ cover no-repeat;
+        background-blend-mode:darken;
+        background-color: rgba(0, 0, 0, 0.471);
+    }
+    .block2:hover{
+        background: url(/img/5.jpg) center/ cover no-repeat;
+        color: aqua;
+        word-spacing: 35px;
+        line-height: 30px;
+        font-size: 25px;
+        background-blend-mode:darken;
+        background-color: rgba(0, 0, 0, 0.478);
+    }
+</style>
+</html>

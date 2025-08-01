@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jessy Logo</title>
+    <style>
+        /* Body styles - centers content and sets dark background */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            background-color: #333;
+        }
+        
+        /* Circular container for the logo with cyan glow effect */
+        .logo-container {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.7);
+        }
+        
+        /* Background image with filters for visual enhancement */
+        .background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url(/img/photo_2025-05-26_13-09-18.jpg);
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.7) contrast(1.2) saturate(1.5);
+        }
+        
+        /* Centers text content within the logo container */
+        .text-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            text-align: center;
+        }
+        
+        /* Stylized text with gradient color and animation */
+        .logo-text {
+            font-family: 'Arial', sans-serif;
+            font-size: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            background: linear-gradient(to right, #ff00cc, #3333ff, #00ffcc, #ffcc00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            animation: colorChange 8s infinite;
+        }
+        
+        /* Radial glow effect overlay */
+        .glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(0, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+            z-index: 5;
+        }
+        
+        /* Animation for continuous color rotation effect */
+        @keyframes colorChange {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <div class="background"></div>
+        <div class="glow"></div>
+        <div class="text-container">
+            <div class="logo-text">JessyandSally</div>
+        </div>
+    </div>
+</body>
+</html>

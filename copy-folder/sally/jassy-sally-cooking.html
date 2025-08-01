@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-Food Cooking Class</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            position: relative;
+            width: 100%;
+            height: 300vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow-y: auto;
+        }
+        
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url(/img/Chinese-Cooking-Hacks.jpg);
+            background-size: cover;
+            background-position: center;
+            opacity: 0.7;
+            z-index: -1;
+        }
+        
+        .content {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+        
+        h1 {
+            color: #e63946;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: #1d3557;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.05);
+        }
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: left;
+        }
+        
+        li {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .highlight {
+            font-weight: bold;
+            color: #e63946;
+        }
+        
+        /* Different colors for text */
+        .date-text { color: #1d3557; }
+        .activities-text { color: #457b9d; }
+        .registration-text { color: #2a9d8f; }
+        .cost-text { color: #8338ec; }
+        .participants-text { color: #fb8500; }
+        .note-text { color: #d62828; }
+        
+        /* Button styles */
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn-register {
+            background-color: #2a9d8f;
+            color: white;
+        }
+        
+        .btn-register:hover {
+            background-color: #1d7d70;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .btn-info {
+            background-color: #457b9d;
+            color: white;
+        }
+        
+        .btn-info:hover {
+            background-color: #2c5d7c;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .btn-contact {
+            background-color: #e63946;
+            color: white;
+        }
+        
+        .btn-contact:hover {
+            background-color: #c1121f;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        /* Registration Form Styles */
+        /* Contact Section Styles */
+        .contact-section {
+            display: none;
+            margin-top: 30px;
+            text-align: left;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .contact-item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+        
+        .contact-label {
+            font-weight: bold;
+            color: #e63946;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        
+        .contact-info {
+            color: #1d3557;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        
+        .instagram {
+            color: #C13584;
+            font-weight: bold;
+        }
+        
+        .registration-form {
+            display: none;
+            margin-top: 30px;
+            text-align: left;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #1d3557;
+        }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+        }
+        
+        .btn-send {
+            background-color: #2a9d8f;
+            color: white;
+        }
+        
+        .btn-cancel {
+            background-color: #e63946;
+            color: white;
+        }
+        
+        .form-photo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .form-photo img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* FAQ Styles */
+        .info-section {
+            display: none;
+            margin-top: 30px;
+            text-align: left;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .info-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding-bottom: 15px;
+        }
+        
+        .info-item:last-child {
+            border-bottom: none;
+        }
+        
+        .question {
+            font-weight: bold;
+            color: #1d3557;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        
+        .answer {
+            color: #457b9d;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        
+        /* Different colors for questions */
+        .q1 { color: #e63946; }
+        .q2 { color: #2a9d8f; }
+        .q3 { color: #457b9d; }
+        .q4 { color: #8338ec; }
+        .q5 { color: #fb8500; }
+        .q6 { color: #d62828; }
+        .q7 { color: #006d77; }
+        .q8 { color: #588157; }
+        .q9 { color: #9c6644; }
+        .q10 { color: #5e548e; }
+        .q11 { color: #219ebc; }
+        .q12 { color: #ff9f1c; }
+        .q13 { color: #7209b7; }
+        .q14 { color: #3a86ff; }
+        
+        /* Different colors for answers */
+        .a1 { color: #f1faee; background-color: #e63946; padding: 5px 10px; border-radius: 4px; }
+        .a2 { color: #f1faee; background-color: #2a9d8f; padding: 5px 10px; border-radius: 4px; }
+        .a3 { color: #f1faee; background-color: #457b9d; padding: 5px 10px; border-radius: 4px; }
+        .a4 { color: #f1faee; background-color: #8338ec; padding: 5px 10px; border-radius: 4px; }
+        .a5 { color: #f1faee; background-color: #fb8500; padding: 5px 10px; border-radius: 4px; }
+        .a6 { color: #f1faee; background-color: #d62828; padding: 5px 10px; border-radius: 4px; }
+        .a7 { color: #f1faee; background-color: #006d77; padding: 5px 10px; border-radius: 4px; }
+        .a8 { color: #f1faee; background-color: #588157; padding: 5px 10px; border-radius: 4px; }
+        .a9 { color: #f1faee; background-color: #9c6644; padding: 5px 10px; border-radius: 4px; }
+        .a10 { color: #f1faee; background-color: #5e548e; padding: 5px 10px; border-radius: 4px; }
+        .a11 { color: #f1faee; background-color: #219ebc; padding: 5px 10px; border-radius: 4px; }
+        .a12 { color: #f1faee; background-color: #ff9f1c; padding: 5px 10px; border-radius: 4px; }
+        .a13 { color: #f1faee; background-color: #7209b7; padding: 5px 10px; border-radius: 4px; }
+        .a14 { color: #f1faee; background-color: #3a86ff; padding: 5px 10px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="background-image"></div>
+        <div class="content">
+            <h1>K-Food Cooking Class</h1>
+            <ul>
+                <li><span class="highlight">Date:</span> <span class="date-text">Mar 28, SAT</span></li>
+                <li><span class="highlight">Activities:</span> <span class="activities-text">Cooking class + Sightseeing (Transportation included)</span></li>
+                <li><span class="highlight">Registration:</span> <span class="registration-text">Please fill out the Google form</span></li>
+                <li><span class="highlight">Cost:</span> <span class="cost-text">$50 (Pay in cash on-site)</span></li>
+                <li><span class="highlight">Minimum number of Participants:</span> <span class="participants-text">10</span></li>
+                <li><span class="highlight">Note:</span> <span class="note-text">If minimum number is not reached, the class would be cancelled.</span></li>
+            </ul>
+            
+            <div class="button-container">
+                <a href="#" class="btn btn-register" id="register-btn">Register Now</a>
+                <a href="#" class="btn btn-info" id="info-btn">More Information</a>
+                <a href="#" class="btn btn-contact">Contact Us</a>
+            </div>
+            
+            <!-- Registration Form -->
+            <div class="registration-form" id="registration-form">
+                <h2>Registration Form</h2>
+                
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="surname">Surname:</label>
+                    <input type="text" id="surname" name="surname" placeholder="Enter your surname" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <textarea id="address" name="address" placeholder="Enter your address" required></textarea>
+                </div>
+                
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-send">Send</button>
+                    <button type="reset" class="btn btn-cancel" id="cancel-btn">Cancel</button>
+                </div>
+                <div>
+                    <div class="form-photo">
+                        <img src="URL_ADDRESSicsum.photos/200/300" alt="Registration Photo">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- More Information Section -->
+            <div class="info-section" id="info-section">
+                <h2>Frequently Asked Questions</h2>
+                
+                <div class="info-item">
+                    <div class="question q1">1. How can I register for the K-Food Cooking Class?</div>
+                    <div class="answer a1">Answer: You need to fill out the registration Google form.</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="question q2">2. Is there a deadline to fill out the registration form?</div>
+                    <div class="answer a2">Answer: The deadline is not specified, but it's best to register early since the class may be canceled if the minimum number of participants isn't reached.</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="question q3">3. What specific dishes will be prepared during the cooking class?</div>
+                    <div class="answer a3">Answer: The specific dishes are not listed; further details might be available upon registration or contact with the organizers.</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="question q4">4. How long will the cooking class and sightseeing activities last?</div>
+                    <div class="answer a4">Answer: The duration isn't specified, but typically, such activities last around several hours to half a day.</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="question q5">5. What sightseeing places are included in the itinerary?</div>
+                    <div class="answer a5">Answer: The exact sightseeing spots are not mentioned; please check the event details or contact the organizer for more info.</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="question q6">6. Is transportation provided for the sightseeing portion?</div>
+                    <div class="answer a6">Answer: Yes, transportation is included in the package.</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="question q7">7. What should I bring or wear for the cooking class?</div>
+                    <div class="answer a7">Answer: It's recommended to wear comfortable clothing suitable for cooking; specific instructions might be provided upon registration.</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="question q8">8. Are there any age restrictions or recommendations for participants?</div>
+                    <div class="answer a8">Answer: Age restrictions are not specified; general recommendations would include being able to participate safely in cooking activities.</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="question q9">9. What happens if the minimum number of participants is not reached?</div>
+                    <div class="answer a9">Answer: The class will be canceled if fewer than 10 participants register.</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="question q10">10. Is there an option to pay in advance or only pay in cash on-site?</div>
+                    <div class="answer a10">Answer: Payment is only accepted in cash on-site.</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="question q11">11. Will there be any materials or ingredients provided during the class?</div>
+                    <div class="answer a11">Answer: Yes, ingredients and materials for cooking will likely be provided.</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="question q12">12. Can I bring a friend or family member along? Is there a limit on group size?</div>
+                    <div class="answer a12">Answer: You can likely register with friends or family, but the total group size is limited by the minimum and possibly any maximum limits set by the organizer.</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="question q13">13. Is there any cancellation policy or refund available if I cannot attend?</div>
+                    <div class="answer a13">Answer: This information is not specified; it's best to contact the organizer directly.</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="question q14">14. Are there any dietary restrictions or special requests that can be accommodated?</div>
+                    <div class="answer a14">Answer: You should contact the organizer in advance to discuss any dietary restrictions or special needs.</div>
+                </div>
+                
+                <div class="form-buttons">
+                    <button type="button" class="btn btn-cancel" id="back-btn">Back</button>
+                </div>
+            </div>
+            <!-- Contact Section -->
+            <div class="contact-section" id="contact-section">
+                <h2>Contact Information</h2>
+                <p>For any inquiries or assistance, please contact us at:</p>
+                <ul>
+                    <li>Email: @sallyandjassy_cooking</li>
+                    <li>Phone: +1 (123) 456-7890</li>
+                    <li>Address: 123 Main Street, City, Country</li>
+                    <li>Instagram account: Sally and Jassy_M</li>
+                </ul>
+                <div class="form-buttons">
+                    <button type="button" class="btn btn-cancel" id="contact-back-btn">Back</button>
+                </div>
+                <div class="form-buttons"></div>
+        </div>
+    </div>
+    
+    <script>
+        // JavaScript to show/hide the registration form, info section, and contact section
+        document.addEventListener('DOMContentLoaded', function() {
+            const registerBtn = document.getElementById('register-btn');
+            const infoBtn = document.getElementById('info-btn');
+            const contactBtn = document.querySelector('.btn-contact');
+            const cancelBtn = document.getElementById('cancel-btn');
+            const backBtn = document.getElementById('back-btn');
+            const contactBackBtn = document.getElementById('contact-back-btn');
+            const registrationForm = document.getElementById('registration-form');
+            const infoSection = document.getElementById('info-section');
+            const contactSection = document.getElementById('contact-section');
+            
+            registerBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                registrationForm.style.display = 'block';
+                infoSection.style.display = 'none';
+                contactSection.style.display = 'none';
+            });
+            
+            infoBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                infoSection.style.display = 'block';
+                registrationForm.style.display = 'none';
+                contactSection.style.display = 'none';
+            });
+            
+            contactBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                contactSection.style.display = 'block';
+                registrationForm.style.display = 'none';
+                infoSection.style.display = 'none';
+            });
+            
+            cancelBtn.addEventListener('click', function() {
+                registrationForm.style.display = 'none';
+            });
+            
+            // Handle both back buttons
+            document.querySelectorAll('#back-btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    infoSection.style.display = 'none';
+                });
+            });
+            
+            contactBackBtn.addEventListener('click', function() {
+                contactSection.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

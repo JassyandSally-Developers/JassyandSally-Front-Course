@@ -9,64 +9,42 @@
 </head>
 
 <body>
-    <!-- <div class="block1">
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus soluta mollitia voluptas
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab voluptatem fugiat veniam consequuntur sapiente
-            aliquid, corporis recusandae culpa, enim error similique. Facilis eius minima harum, recusandae ipsum maxime
-            modi architecto ut quae eum. Eum recusandae doloribus, saepe modi repudiandae nemo iusto alias blanditiis
-            praesentium necessitatibus ratione quam deleniti quibusdam pariatur!
-        </p>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus soluta mollitia voluptas
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab voluptatem fugiat veniam consequuntur sapiente
-            aliquid, corporis recusandae culpa, enim error similique. Facilis eius minima harum, recusandae ipsum maxime
-            modi architecto ut quae eum. Eum recusandae doloribus, saepe modi repudiandae nemo iusto alias blanditiis
-            praesentium necessitatibus ratione quam deleniti quibusdam pariatur!
-        </p>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus soluta mollitia voluptas
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab voluptatem fugiat veniam consequuntur sapiente
-            aliquid, corporis recusandae culpa, enim error similique. Facilis eius minima harum, recusandae ipsum maxime
-            modi architecto ut quae eum. Eum recusandae doloribus, saepe modi repudiandae nemo iusto alias blanditiis
-            praesentium necessitatibus ratione quam deleniti quibusdam pariatur!
-        </p>
-    </div> -->
 
 
+    <div class="block1">
+         <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Voluptatibus soluta mollitia voluptas nesciunt
+        </p> 
+    </div>
 
 
 
     <div class="block2">
         <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
-             Voluptatibus soluta mollitia voluptas nesciunt
+            Voluptatibus soluta mollitia voluptas nesciunt
         </p>
     </div>
-    <!-- <div class="block3">
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-             Voluptatibus soluta mollitia voluptas nesciunt
-        </p>
-    </div> -->
+
 
 
 </body>
 <style>
     * {
-        margin: 0;
         padding: 0;
+        margin: 0;
         box-sizing: border-box;
     }
 
+
     body {
-        background-color: #333;
+        /* background-color: #333; */
     }
 
     .block1 {
-
-        /* background: linear-gradient(to bottom, red,green,blue); */
         /* background: linear-gradient(to top, red,green,blue); */
+        /* background: linear-gradient(to bottom, red,green,blue); */
         /* background: linear-gradient(to left, red,green,blue); */
         /* background: linear-gradient(to right, red,green,blue); */
         /* background: linear-gradient(45deg, red,green,blue); */
@@ -79,63 +57,70 @@
         /* background: radial-gradient(circle, red, green, blue); */
         /* background: repeating-radial-gradient(circle, gray, skyblue, black) ; */
         /* background: repeating-radial-gradient(circle, gray, skyblue, black) ; */
-
-        
         /* background-color: inherit; */
-        background-color: black;
-        color: snow;
-        width: 300px;
+        /* background-color: black; */
+        /* color: snow; */
+        width: 200px;
         height: 200px;
         margin: 20px auto;
+        background-color: gray;
         padding: 20px;
-        overflow: auto;
+        box-shadow: 
+        10px 10px 30px 0 blue,
+        20px 20px 30px 0 yellow
+        0 0 15px 10px red
+        10px 10px 15px 0 black,
+        -10px -10px 15px 0 darkblue,
+        /* 15px 15px 15px 0 red, */
+         /* -15px -15px 15px 0 gold */
+        /* 10px 10px 15px 0 black inset, */
+        /* -10px -10px 15px 0 blue inset, */
+        /* 15px 15px 15px 0 red inset, */
+        /* -15px -15px 15px 0 gold inset ; */
+        text-shadow:
+         /* 1px 1px 3px gold, */
+         /* -1px 1px 3px blue */
+         ; 
+        /* overflow: auto; */
         /* box-sizing: border-box; */
         /* color: red; */
         /* resize: both; */
     }
 
-    .block1::-webkit-scrollbar{
+    .block1::-webkit-scrollbar {
         /* width: 20px; */
         /* box-shadow: 0 0 10px 3px red inset; */
     }
 
-    .block1::-webkit-scrollbar-thumb{
+    .block1::-webkit-scrollbar-thumb {
         /* box-shadow: 0 0 10px 4px green inset; */
     }
 
-    .block1::-webkit-scrollbar-button{
+    .block1::-webkit-scrollbar-button {
         /* box-shadow: 0 0 5px 1px gold inset;  */
     }
-    .block1::-webkit-resizer{
+
+    .block1::-webkit-resizer {
         /* background-color: blue; */
     }
-    .block2 {
-        margin: 20px auto;
-        width: 200px;
-        height: 200px;
-        background-color: gray;
-        padding: 25px;
-        /* box-shadow:
-         10px 10px 15px 10px red,
-         15px 15px 15px 10px blue,
-         20px 20px 15px 10px green
-         ; */
-        /* box-shadow: 10px 10px 15px 10px red inset; */
-        /* box-shadow: -10px -10px 10px 5px red; */
-        /* box-shadow: -5px -5px 30px 5px red inset; */
-        /* box-sizing: border-box; */
 
-        /* text-shadow: 
-        2px 2px 4px red,
-        -2px -2px 4px blue,
-        3px 3px 4px gold
-        ; */
-    }
-    .block3 {
-        margin: 20px auto;
+    .block2 {
         width: 200px;
         height: 200px;
-        background-color: lightgreen;
+        margin: 20px auto;
+        background-color: gray;
+        /* margin: 20px auto; */
+        /* width: 200px; */
+        /* height: 200px; */
+        /* background-color: gray; */
+        /* padding: 25px; */
+    }
+
+    .block3 {
+        /* margin: 20px auto; */
+        /* width: 200px; */
+        /* height: 200px; */
+        /* background-color: lightgreen; */
         /* padding: 50px; */
         /* box-sizing: border-box; */
     }

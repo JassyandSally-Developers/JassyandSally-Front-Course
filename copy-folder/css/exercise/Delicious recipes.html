@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delicious Recipes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            overflow-y: auto;
+            padding: 20px 0;
+        }
+
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url(../../img/Chinese-Cooking-Hacks.jpg);
+            background-size: cover;
+            background-position: center;
+            opacity: 0.4;
+            z-index: -1;
+        }
+
+        header {
+            background-color: rgba(42, 157, 143, 0.9);
+            color: white;
+            padding: 20px;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        nav {
+            background-color: rgba(231, 111, 81, 0.9);
+            width: 100%;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            margin: 0 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .recipe-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .recipe-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .recipe-info {
+            padding: 15px;
+        }
+
+        .recipe-title {
+            color: #2a9d8f;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .recipe-description {
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .recipe-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .view-recipe-btn {
+            display: inline-block;
+            background-color: #e76f51;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .view-recipe-btn:hover {
+            background-color: #e63946;
+            transform: translateY(-2px);
+        }
+
+        .recipe-details {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .recipe-details-content {
+            background-color: white;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #e63946;
+            background: none;
+            border: none;
+            transition: transform 0.3s ease;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.2);
+        }
+
+        .recipe-details-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .recipe-details h2 {
+            color: #2a9d8f;
+            margin-top: 0;
+        }
+
+        .recipe-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .recipe-info-item {
+            text-align: center;
+        }
+
+        .recipe-info-label {
+            font-weight: bold;
+            color: #e76f51;
+            margin-bottom: 5px;
+        }
+
+        .ingredients-list,
+        .instructions-list {
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        .ingredients-list li,
+        .instructions-list li {
+            margin-bottom: 10px;
+        }
+
+        .instructions-list li {
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .instructions-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            background-color: #e76f51;
+            border-radius: 50%;
+        }
+
+        footer {
+            background-color: rgba(42, 157, 143, 0.9);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .recipe-card {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            nav li {
+                margin: 5px 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="background-image"></div>
+
+        <header>
+            <h1>Delicious Recipes</h1>
+            <p>Discover amazing dishes from around the world</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#" class="category-link" data-category="all">All Recipes</a></li>
+                <li><a href="#" class="category-link" data-category="breakfast">Breakfast</a></li>
+                <li><a href="#" class="category-link" data-category="lunch">Lunch</a></li>
+                <li><a href="#" class="category-link" data-category="dinner">Dinner</a></li>
+                <li><a href="#" class="category-link" data-category="dessert">Desserts</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <!-- Recipe Card 1 -->
+            <div class="recipe-card" data-category="breakfast">
+                <img src="/img/American Pancakes - 4.3 landscape-8901.webp" alt="Pancakes with Berries"
+                    class="recipe-image">
+                <div class="recipe-info">
+                    <h3 class="recipe-title">Fluffy Pancakes with Fresh Berries</h3>
+                    <p class="recipe-description">Start your day with these delicious, fluffy pancakes topped with fresh
+                        seasonal berries.</p>
+                    <div class="recipe-meta">
+                        <span>Prep: 15 mins</span>
+                        <span>Cook: 10 mins</span>
+                    </div>
+                    <a href="#" class="view-recipe-btn" data-recipe="pancakes">View Recipe</a>
+                </div>
+            </div>
+
+            <!-- Recipe Card 2 -->
+            <div class="recipe-card" data-category="lunch">
+                <img src="/img/grilled-chicken-salad-lead-6628169550105.avif" alt="Chicken Salad" class="recipe-image">
+                <div class="recipe-info">
+                    <h3 class="recipe-title">Grilled Chicken Salad</h3>
+                    <p class="recipe-description">A healthy and satisfying salad with grilled chicken, fresh vegetables,
+                        and a zesty dressing.</p>
+                    <div class="recipe-meta">
+                        <span>Prep: 20 mins</span>
+                        <span>Cook: 15 mins</span>
+                    </div>
+                    <a href="#" class="view-recipe-btn" data-recipe="chicken-salad">View Recipe</a>
+                </div>
+            </div>
+
+            <!-- Recipe Card 3 -->
+            <div class="recipe-card" data-category="dinner">
+                <img src="/img/Garlic-Parmesan-Chicken-Pasta-1.jpg" alt="Pasta Dish" class="recipe-image">
+                <div class="recipe-info">
+                    <h3 class="recipe-title">Creamy Garlic Parmesan Pasta</h3>
+                    <p class="recipe-description">A rich and creamy pasta dish with garlic, parmesan cheese, and fresh
+                        herbs.</p>
+                    <div class="recipe-meta">
+                        <span>Prep: 10 mins</span>
+                        <span>Cook: 20 mins</span>
+                    </div>
+                    <a href="#" class="view-recipe-btn" data-recipe="pasta">View Recipe</a>
+                </div>
+            </div>
+
+            <!-- Recipe Card 4 -->
+            <div class="recipe-card" data-category="dessert">
+                <img src="/img/DSC_7327.jpg" alt="Chocolate Cake" class="recipe-image">
+                <div class="recipe-info">
+                    <h3 class="recipe-title">Decadent Chocolate Cake</h3>
+                    <p class="recipe-description">A moist and rich chocolate cake that's perfect for any celebration or
+                        special occasion.</p>
+                    <div class="recipe-meta">
+                        <span>Prep: 25 mins</span>
+                        <span>Cook: 35 mins</span>
+                    </div>
+                    <a href="#" class="view-recipe-btn" data-recipe="chocolate-cake">View Recipe</a>
+                </div>
+            </div>
+
+            <!-- Recipe Card 5 -->
+            <div class="recipe-card" data-category="breakfast">
+                <img src="/img/Bean-avocado-toast-1-1320x880.jpg" alt="Avocado Toast" class="recipe-image">
+                <div class="recipe-info">
+                    <h3 class="recipe-title">Avocado Toast with Poached Egg</h3>
+                    <p class="recipe-description">A trendy and nutritious breakfast featuring creamy avocado on toasted
+                        bread topped with a perfectly poached egg.</p>
+                    <div class="recipe-meta">
+                        <span>Prep: 10 mins</span>
+                        <span>Cook: 5 mins</span>
+                    </div>
+                    <a href="#" class="view-recipe-btn" data-recipe="avocado-toast">View Recipe</a>
+                </div>
+            </div>
+
+            <!-- Recipe Card 6 -->
+            <div class="recipe-card" data-category="dinner">
+                <img src="/img/classic-korean-bibimbap-recipe-2118765-hero-01-091c0e0f8c20426d8f70747955efa61d.jpg"
+                    alt="Korean Bibimbap" class="recipe-image">
+                <div class="recipe-info">
+                    <h3 class="recipe-title">Traditional Korean Bibimbap</h3>
+                    <p class="recipe-description">A colorful and nutritious Korean rice bowl topped with vegetables,
+                        meat, and a spicy gochujang sauce.</p>
+                    <div class="recipe-meta">
+                        <span>Prep: 30 mins</span>
+                        <span>Cook: 20 mins</span>
+                    </div>
+                    <a href="#" class="view-recipe-btn" data-recipe="bibimbap">View Recipe</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recipe Details Modals -->
+        <!-- Pasta Recipe Details -->
+        <div class="recipe-details" id="pasta-details">
+            <div class="recipe-details-content">
+                <button class="close-btn">&times;</button>
+                <img src="/img/Garlic-Parmesan-Chicken-Pasta-1.jpg" alt="Pasta Dish" class="recipe-details-image">
+                <h2>Creamy Garlic Parmesan Pasta</h2>
+
+                <div class="recipe-info-grid">
+                    <div class="recipe-info-item">
+                        <div class="recipe-info-label">Prep Time</div>
+                        <div>10 minutes</div>
+                    </div>
+                    <div class="recipe-info-item">
+                        <div class="recipe-info-label">Cook Time</div>
+                        <div>20 minutes</div>
+                    </div>
+                    <div class="recipe-info-item">
+                        <div class="recipe-info-label">Servings</div>
+                        <div>4</div>
+                    </div>
+                    <div class="recipe-info-item">
+                        <div class="recipe-info-label">Difficulty</div>
+                        <div>Easy</div>
+                    </div>
+                </div>
+
+                <h3>Ingredients</h3>
+                <ul class="ingredients-list">
+                    <li>8 oz fettuccine pasta</li>
+                    <li>2 tablespoons butter</li>
+                    <li>4 cloves garlic, minced</li>
+                    <li>1 cup heavy cream</li>
+                    <li>1 cup freshly grated Parmesan cheese</li>
+                    <li>1/4 teaspoon salt</li>
+                    <li>1/4 teaspoon black pepper</li>
+                    <li>2 tablespoons fresh parsley, chopped</li>
+                    <li>Red pepper flakes (optional)</li>
+                </ul>
+
+                <h3>Instructions</h3>
+                <ol class="instructions-list">
+                    <li>Cook pasta according to package instructions until al dente. Reserve 1/2 cup of pasta water
+                        before draining.</li>
+                    <li>In a large skillet, melt butter over medium heat. Add minced garlic and sauté for 1-2 minutes
+                        until fragrant.</li>
+                    <li>Pour in heavy cream and bring to a simmer. Cook for 3-4 minutes until it begins to thicken
+                        slightly.</li>
+                    <li>Reduce heat to low and gradually whisk in Parmesan cheese until melted and smooth.</li>
+                    <li>Season with salt and pepper to taste.</li>
+                    <li>Add cooked pasta to the sauce and toss to coat. If sauce is too thick, add a splash of reserved
+                        pasta water.</li>
+                    <li>Garnish with chopped parsley and red pepper flakes if desired.</li>
+                    <li>Serve immediately with additional Parmesan cheese on top.</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Chocolate Cake Recipe Details -->
+        <div class="recipe-details" id="chocolate-cake-details">
+            <div class="recipe-details-content">
+                <button class="close-btn">&times;</button>
+                <img src="/img/DSC_7327.jpg" alt="Chocolate Cake" class="recipe-details-image">
+                <h2>Decadent Chocolate Cake</h2>
+
+                <div class="recipe-info-grid">
+                    <div class="recipe-info-item">
+                        <div class="recipe-info-label">Prep Time</div>
+                        <div>25 minutes</div>
+                    </div>
+                    <div class="recipe-info-item">
+                        <div class="recipe-info-label">Cook Time</div>
+                        <div>35 minutes</div>
+                    </div>
+                    <div class="recipe-info-item">
+                        <div class="recipe-info-label">Servings</div>
+                        <div>12</div>
+                    </div>
+                    <div class="recipe-info-item">
+                        <div class="recipe-info-label">Difficulty</div>
+                        <div>Medium</div>
+                    </div>
+                </div>
+
+                <h3>Ingredients</h3>
+                <ul class="ingredients-list">
+                    <li>2 cups all-purpose flour</li>
+                    <li>2 cups granulated sugar</li>
+                    <li>3/4 cup unsweetened cocoa powder</li>
+                    <li>2 teaspoons baking soda</li>
+                    <li>1 teaspoon baking powder</li>
+                    <li>1 teaspoon salt</li>
+                    <li>2 large eggs</li>
+                    <li>1 cup buttermilk</li>
+                    <li>1/2 cup vegetable oil</li>
+                    <li>2 teaspoons vanilla extract</li>
+                    <li>1 cup hot coffee</li>
+                    <li>For frosting: 1/2 cup butter, 2/3 cup cocoa powder, 3 cups powdered sugar, 1/3 cup milk, 1
+                        teaspoon vanilla extract</li>
+                </ul>
+
+                <h3>Instructions</h3>
+                <ol class="instructions-list">
+                    <li>Preheat oven to 350°F (175°C). Grease and flour two 9-inch round cake pans.</li>
+                    <li>In a large bowl, whisk together flour, sugar, cocoa powder, baking soda, baking powder, and
+                        salt.</li>
+                    <li>Add eggs, buttermilk, oil, and vanilla. Beat with an electric mixer on medium speed for 2
+                        minutes.</li>
+                    <li>Stir in hot coffee (batter will be thin). Pour batter evenly into prepared pans.</li>
+                    <li>Bake for 30-35 minutes, or until a toothpick inserted in center comes out clean.</li>
+                    <li>Cool in pans for 10 minutes, then remove to wire racks to cool completely.</li>
+                    <li>For frosting: Melt butter and stir in cocoa powder. Alternately add powdered sugar and milk,
+                        beating to spreading consistency. Add vanilla and mix well.</li>
+                    <li>Spread frosting between layers and on top and sides of cake.</li>
+                    <li>Let cake stand for 1 hour before serving.</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Avocado Toast Recipe Details -->
+        <div class="recipe-details" id="avocado-toast-details">
+            <div class="recipe-details-content">
+                <button class="close-btn">&times;</button>
+                <img src="/img/Bean-avocado-toast-1-1320x880.jpg" alt="Avocado Toast" class="recipe-details-image">
+                <h2>Avocado Toast with Poached Egg</h2>
+
+                <div class="recipe-info-grid">
+                    <div class="recipe-info-item">
+                        <div class="recipe-info-label">Prep Time</div>
+                        <div>10 minutes</div>
+                    </div>
+                    <div class="recipe-info-item">
+                        <div class="recipe-info-label">Cook Time</div>
+                        <div>5 minutes</div>
+                    </div>
+                    <div class="recipe-info-item">
+                        <div class="recipe-info-label">Servings</div>
+                        <div>2</div>
+                    </div>
+                    <div class="recipe-info-item">
+                        <div class="recipe-info-label">Difficulty</div>
+                        <div>Easy</div>
+                    </div>
+                </div>
+
+                <h3>Ingredients</h3>
+                <ul class="ingredients-list">
+                    <li>2 slices of sourdough bread</li>
+                    <li>1 ripe avocado</li>
+                    <li>2 large eggs</li>
+                    <li>1 tablespoon white vinegar</li>
+                    <li>1/2 lemon, juiced</li>
+                    <li>Red pepper flakes</li>
+                    <li>Salt and black pepper to taste</li>
+                    <li>2 tablespoons chopped fresh herbs (chives, cilantro, or parsley)</li>
+                    <li>Extra virgin olive oil for drizzling</li>
+                </ul>
+
+                <h3>Instructions</h3>
+                <ol class="instructions-list">
+                    <li>Toast the bread slices until golden and crisp.</li>
+                    <li>Cut the avocado in half, remove the pit, and scoop the flesh into a bowl.</li>
+                    <li>Add lemon juice, salt, and pepper to the avocado and mash with a fork, leaving some chunks for
+                        texture.</li>
+                    <li>For the poached eggs: Bring a pot of water to a gentle simmer and add vinegar.</li>
+                    <li>Crack each egg into a small bowl, then gently slide into the simmering water.</li>
+                    <li>Cook for 3-4 minutes until whites are set but yolks are still runny.</li>
+                    <li>Remove eggs with a slotted spoon and place on a paper towel to drain excess water.</li>
+                    <li>Spread the mashed avocado evenly on the toast slices.</li>
+                    <li>Top each toast with a poached egg, sprinkle with red pepper flakes and fresh herbs.</li>
+                    <li>Drizzle with olive oil and add additional salt and pepper if desired.</li>
+                    <li>Serve immediately.</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Bibimbap Recipe Details -->
+        <div class="recipe-details" id="bibimbap-details">
+            <div class="recipe-details-content">
+                <button class="close-btn">&times;</button>
+                <img src="/img/classic-korean-bibimbap-recipe-2118765-hero-01-091c0e0f8c20426d8f70747955efa61d.jpg"
+                    alt="Korean Bibimbap" class="recipe-details-image">
+                <h2>Traditional Korean Bibimbap</h2>
+
+                <div class="recipe-info-grid">
+                    <div class="recipe-info-item">
+                        <div class="recipe-info-label">Prep Time</div>
+                        <div>30 minutes</div>
+                    </div>
+                    <div class="recipe-info-item">
+                        <div class="recipe-info-label">Cook Time</div>
+                        <div>20 minutes</div>
+                    </div>
+                    <div class="recipe-info-item">
+                        <div class="recipe-info-label">Servings</div>
+                        <div>4</div>
+                    </div>
+                    <div class="recipe-info-item">
+                        <div class="recipe-info-label">Difficulty</div>
+                        <div>Medium</div>
+                    </div>
+                </div>
+
+                <h3>Ingredients</h3>
+                <ul class="ingredients-list">
+                    <li>4 cups cooked short-grain rice</li>
+                    <li>1/2 lb beef sirloin, thinly sliced</li>
+                    <li>2 tablespoons soy sauce</li>
+                    <li>1 tablespoon sesame oil</li>
+                    <li>1 tablespoon brown sugar</li>
+                    <li>2 cloves garlic, minced</li>
+                    <li>1 cup spinach, blanched and seasoned</li>
+                    <li>1 cup bean sprouts, blanched and seasoned</li>
+                    <li>1 carrot, julienned and sautéed</li>
+                    <li>1 zucchini, julienned and sautéed</li>
+                    <li>1 cup shiitake mushrooms, sliced and sautéed</li>
+                    <li>4 eggs, fried</li>
+                    <li>4 tablespoons gochujang (Korean chili paste)</li>
+                    <li>Sesame seeds for garnish</li>
+                </ul>
+
+                <h3>Instructions</h3>
+                <ol class="instructions-list">
+                    <li>Marinate beef in soy sauce, sesame oil, brown sugar, and minced garlic for at least 30 minutes.
+                    </li>
+                    <li>Cook each vegetable separately: blanch spinach and bean sprouts, then season with salt and
+                        sesame oil; sauté carrots, zucchini, and mushrooms with a pinch of salt.</li>
+                    <li>Cook the marinated beef in a hot pan until browned and cooked through.</li>
+                    <li>Fry eggs sunny-side up, keeping the yolks runny.</li>
+                    <li>To assemble: place warm rice in four bowls.</li>
+                    <li>Arrange the beef and vegetables in separate sections on top of the rice.</li>
+                    <li>Place a fried egg in the center of each bowl.</li>
+                    <li>Serve with gochujang on the side or directly on top.</li>
+                    <li>Before eating, mix everything together thoroughly.</li>
+                    <li>Garnish with sesame seeds and serve immediately.</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Pancakes Recipe Details -->
+        <div class="recipe-details" id="pancakes-details">
+            <div class="recipe-details-content">
+                <button class="close-btn">&times;</button>
+                <img src="/img/American Pancakes - 4.3 landscape-8901.webp" alt="Pancakes with Berries"
+                    class="recipe-details-image">
+                <h2>Fluffy Pancakes with Fresh Berries</h2>
+
+                <div class="recipe-info-grid">
+                    <div class="recipe-info-item">
+                        <div class="recipe-info-label">Prep Time</div>
+                        <div>15 minutes</div>
+                    </div>
+                    <div class="recipe-info-item">
+                        <div class="recipe-info-label">Cook Time</div>
+                        <div>10 minutes</div>
+                    </div>
+                    <div class="recipe-info-item">
+                        <div class="recipe-info-label">Servings</div>
+                        <div>4</div>
+                    </div>
+                    <div class="recipe-info-item">
+                        <div class="recipe-info-label">Difficulty</div>
+                        <div>Easy</div>
+                    </div>
+                </div>
+
+                <h3>Ingredients</h3>
+                <ul class="ingredients-list">
+                    <li>2 cups all-purpose flour</li>
+                    <li>2 tablespoons sugar</li>
+                    <li>1 tablespoon baking powder</li>
+                    <li>1/2 teaspoon salt</li>
+                    <li>2 large eggs</li>
+                    <li>1 3/4 cups milk</li>
+                    <li>1/4 cup melted butter</li>
+                    <li>1 teaspoon vanilla extract</li>
+                    <li>2 cups mixed fresh berries (strawberries, blueberries, raspberries)</li>
+                    <li>Maple syrup for serving</li>
+                </ul>
+
+                <h3>Instructions</h3>
+                <ol class="instructions-list">
+                    <li>In a large bowl, whisk together the flour, sugar, baking powder, and salt.</li>
+                    <li>In another bowl, beat the eggs, then add milk, melted butter, and vanilla extract.</li>
+                    <li>Pour the wet ingredients into the dry ingredients and stir until just combined. Don't overmix; a
+                        few lumps are okay.</li>
+                    <li>Heat a lightly oiled griddle or frying pan over medium-high heat.</li>
+                    <li>Pour or scoop the batter onto the griddle, using approximately 1/4 cup for each pancake.</li>
+                    <li>Cook until bubbles form on the surface and the edges look dry, about 2-3 minutes.</li>
+                    <li>Flip and cook until browned on the other side, about 1-2 minutes more.</li>
+                    <li>Serve hot with fresh berries and maple syrup.</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Chicken Salad Recipe Details -->
+        <div class="recipe-details" id="chicken-salad-details">
+            <div class="recipe-details-content">
+                <button class="close-btn">&times;</button>
+                <img src="/img/grilled-chicken-salad-lead-6628169550105.avif" alt="Chicken Salad"
+                    class="recipe-details-image">
+                <h2>Grilled Chicken Salad</h2>
+
+                <div class="recipe-info-grid">
+                    <div class="recipe-info-item">
+                        <div class="recipe-info-label">Prep Time</div>
+                        <div>20 minutes</div>
+                    </div>
+                    <div class="recipe-info-item">
+                        <div class="recipe-info-label">Cook Time</div>
+                        <div>15 minutes</div>
+                    </div>
+                    <div class="recipe-info-item">
+                        <div class="recipe-info-label">Servings</div>
+                        <div>2</div>
+                    </div>
+                    <div class="recipe-info-item">
+                        <div class="recipe-info-label">Difficulty</div>
+                        <div>Medium</div>
+                    </div>
+                </div>
+
+                <h3>Ingredients</h3>
+                <ul class="ingredients-list">
+                    <li>2 boneless, skinless chicken breasts</li>
+                    <li>2 tablespoons olive oil</li>
+                    <li>1 teaspoon dried herbs (thyme, oregano, rosemary)</li>
+                    <li>Salt and pepper to taste</li>
+                    <li>6 cups mixed salad greens</li>
+                    <li>1 cucumber, sliced</li>
+                    <li>1 cup cherry tomatoes, halved</li>
+                    <li>1/2 red onion, thinly sliced</li>
+                    <li>1/4 cup crumbled feta cheese</li>
+                    <li>1/4 cup sliced almonds</li>
+                    <li>For the dressing: 3 tablespoons olive oil, 1 tablespoon lemon juice, 1 teaspoon Dijon mustard, 1
+                        clove garlic (minced), salt and pepper to taste</li>
+                </ul>
+
+                <h3>Instructions</h3>
+                <ol class="instructions-list">
+                    <li>Preheat grill to medium-high heat.</li>
+                    <li>Brush chicken breasts with olive oil and season with dried herbs, salt, and pepper.</li>
+                    <li>Grill chicken for 6-7 minutes per side, or until internal temperature reaches 165°F (74°C).</li>
+                    <li>Let chicken rest for 5 minutes, then slice into strips.</li>
+                    <li>In a large bowl, combine salad greens, cucumber, cherry tomatoes, and red onion.</li>
+                    <li>In a small bowl, whisk together all dressing ingredients.</li>
+                    <li>Toss the salad with the dressing.</li>
+                    <li>Top with grilled chicken strips, feta cheese, and sliced almonds.</li>
+                    <li>Serve immediately.</li>
+                </ol>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Delicious Recipes. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Category filtering
+            const categoryLinks = document.querySelectorAll('.category-link');
+            const recipeCards = document.querySelectorAll('.recipe-card');
+
+            categoryLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const category = this.getAttribute('data-category');
+
+                    // Remove active class from all links
+                    categoryLinks.forEach(link => link.classList.remove('active'));
+
+                    // Add active class to clicked link
+                    this.classList.add('active');
+
+                    // Show/hide recipe cards based on category
+                    recipeCards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Recipe details modal functionality
+            const viewRecipeBtns = document.querySelectorAll('.view-recipe-btn');
+            const closeBtns = document.querySelectorAll('.close-btn');
+
+            viewRecipeBtns.forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const recipeId = this.getAttribute('data-recipe');
+                    const recipeDetails = document.getElementById(`${recipeId}-details`);
+
+                    if (recipeDetails) {
+                        recipeDetails.style.display = 'block';
+                        document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+                    }
+                });
+            });
+
+            closeBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const recipeDetails = this.closest('.recipe-details');
+                    recipeDetails.style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Re-enable scrolling
+                });
+            });
+
+            // Close modal when clicking outside the content
+            document.querySelectorAll('.recipe-details').forEach(modal => {
+                modal.addEventListener('click', function (e) {
+                    if (e.target === this) {
+                        this.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

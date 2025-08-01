@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <div class="div-1">
+            <h3>A</h3>
+            <div>
+                <p>Adam</p>
+                <p>Adam</p>
+                <p>Adam</p>
+                <p>Adam</p>
+                <p>Adam</p>
+            </div>
+        </div>
+        <div class="div-2">
+            <h3>B</h3>
+            <div>
+                <p>Bob</p>
+                <p>Bob</p>
+                <p>Bob</p>
+                <p>Bob</p>
+                <p>Bob</p>
+            </div>
+        </div>
+        <div class="div-3">
+            <h3>C</h3>
+            <div>
+                <p>Cane</p>
+                <p>Cane</p>
+                <p>Cane</p>
+                <p>Cane</p>
+                <p>Cane</p>
+            </div>
+        </div>
+        <div class="div-4">
+            <h3>D</h3>
+            <div>
+                <p>Daghan</p>
+                <p>Daghan</p>
+                <p>Daghan</p>
+                <p>Daghan</p>
+                <p>Daghan</p>
+            </div>
+        </div>
+        <div class="div-5">
+            <h3>E</h3>
+            <div>
+                <p>Elon</p>
+                <p>Elon</p>
+                <p>Elon</p>
+                <p>Elon</p>
+                <p>Elon</p>
+            </div>
+        </div>
+    </div>
+</body>
+<style>
+    .main{
+        width: 50%;
+        margin: 50px auto;
+        background-color: rgba(33, 2, 208, 0.804);
+        color:white ;
+        height: 200px;
+        border-radius: 20px 5px 5px 20px;
+        overflow: auto;
+        background-color: rgba(70, 0, 247, 0.947);
+    }
+    h3{
+        position: sticky;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.847);
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 10px;
+        left: 10px;
+        display: inline-block;
+        display: flex;
+
+    }
+    .main > div{
+        display: grid;
+        grid-template-columns: 60px 1fr;
+        gap: 5px;
+        padding: 5px;
+        font-size: 22px;
+
+
+    }
+</style>
+</html>

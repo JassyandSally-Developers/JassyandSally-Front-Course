@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <div class="item-1"></div>
+    <div class="item-2"></div>
+    <div class="item-3"></div>
+    <div class="item-4"></div>
+  </div>
+</body>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        display: flex;
+        height: 100vh;
+        background-color: antiquewhite;
+        align-items: center;
+        justify-content: center;
+    }
+    .container{
+        border: 25px solid rgba(0, 0, 0, 0.934);
+        width: 50%;
+        height: 100%;
+        display: grid;
+        grid-template-areas: 
+        "a a a b b b "
+        "a a a b b b "
+        "c c c d d d "
+        "c c c d d d";
+        grid-template-columns: 50px;
+        gap:30px;
+        background-color: rgba(98, 21, 206, 0.683) ;
+    }
+    .item-1{
+        border: 25px solid magenta;
+        grid-area: a;
+        background-color: aqua;
+    }
+    .item-2{
+        border: 25px solid darkgreen;
+        grid-area: b;
+        background-color: red;
+    }
+    .item-3{
+        border: 25px solid red;
+        grid-area: c;
+        background-color: darkgreen;
+    }
+    .item-4{
+        border: 25px solid aqua;
+        grid-area: d;
+        background-color: magenta;
+    }
+</style>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>grid practice</title>
+</head>
+
+<body>
+
+
+    <main>
+        <div class="row1">
+            <div></div>
+            <div></div>
+        </div>
+
+
+        <div class="row2">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+
+        <div class="row3">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </main>
+
+</body>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+
+
+    main{
+        width: 60%;
+        height: 500px;
+        background-color: gray;
+        margin: 50px auto;
+        display: grid;
+        /* grid-template-columns: 1fr ; */
+        /* grid-template-rows: 1fr 3fr 1fr; */
+        grid-template: 1fr 3fr 1fr / 1fr;
+        gap: 10px;
+    }
+
+
+    .row1{
+        background-color: rgba(255, 0, 0, 0.5);
+        display: grid;
+        gap: 10px;
+        grid-template: 1fr / 1fr 1fr;
+    }
+    .row2{
+        background-color: rgba(0, 128, 0, 0.548);
+        display: grid;
+        grid-template: 1fr / repeat(4, 1fr);
+        gap: 10px;
+    }
+    .row3{
+        background-color: rgba(0, 0, 255, 0.537);
+        display: grid;
+        grid-template: 1fr / repeat(3, 1fr);
+        gap: 10px;
+    }
+
+      .row1 div{
+        background-color: rgba(255, 174, 0, 0.564);
+      }
+
+      .row2 div{
+        background-color: rgba(255, 0, 255, 0.491);
+      }
+      .row3 div{
+        background-color: rgb(84, 31, 7);
+      }
+</style>
+
+
+</html>

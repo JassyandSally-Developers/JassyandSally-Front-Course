@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+            <li>Item 4</li>
+            <li>Item 5</li>
+        </ul>
+    </div>
+</body>
+<style>
+    :root{
+        background-color: rgba(5, 73, 79, 0.607);
+        margin: 100px auto;
+        transition: all 0.5s ease;
+        --main-width: 200px;
+        --main-width-hover: 250px;
+    }
+
+    :root {
+        background-color: rgba(79, 5, 73, 0.607);
+    }
+
+     * {
+        transition: 1s;
+    }
+
+    ::before,
+    ::after {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        transition: 1s;
+    }
+
+    .main {
+        width: var(--main-width);
+        background-color: lightgray;
+        margin: 0 auto;
+        transition: background-color 0.8s, width 1.2s;
+    }
+
+    .main:hover {
+        background-color: #d0d0ff;
+        width: var(--main-width-hover);
+    }
+
+    li {
+        list-style-type: lao;
+        position: relative;
+        padding: 10px 20px;
+    }
+
+    li::selection {
+        background-color: aquamarine;
+        color: magenta;
+    }
+
+    li:hover {
+        list-style-type: none;
+    }
+
+    li::before {
+        content: "😶‍🌫️";
+        opacity: 0;
+        position: absolute;
+        left: 25px;
+    }
+
+
+    li:hover::before {
+        content: "❤️";
+        left: -25px;
+        opacity: 1;
+        
+    }
+</style>
+</html>

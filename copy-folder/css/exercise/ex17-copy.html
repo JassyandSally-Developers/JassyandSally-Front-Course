@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <marquee behavior="alternate" direction="">
+        <a href="youtube">YouTube</a>
+    </marquee>
+    <main>
+        <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore <span>ipsa alias</span> optio impedit mollitia blanditiis dolores eum molestiae ad distinctio molestias incidunt id ut quae tempore <span>et accusantium</span> suscipit, veniam itaque. Amet, voluptates? Voluptatem, molestias. Unde nisi atque
+        </p>
+        <button>Link 1</button>
+        <button>Link 2</button>
+    </main>
+</body>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        transition: 1s;
+    }
+    body{
+        background-color: black;
+        color: snow;
+    }
+    main{
+        text-align: center;
+        border: 3px solid red;
+        height: 240px;
+    }
+    p{
+        width: 30%;
+        margin: 20px auto;
+    }
+    button{
+        display: inline-block;
+        padding: 5px 10px;
+        margin: 0 20px 20px 20px;
+        border: none;
+        outline: none;
+        background-color: inherit;
+        color: yellow;
+        background-color: rgba(0,0,0,0);
+
+    }
+    main:hover span{
+        display: inline-block;
+        padding: 2px 5px;
+        border: 3px solid greenyellow;
+    }
+    button:hover{
+        color: red;
+        border-radius: 20%;
+        border-bottom: 3px solid white;
+        background-color: rgba(0, 128, 0, 0.468);
+
+    }
+    main:hover{
+        height: 75vh;
+        font-size: 25px;
+        line-height: 50px;
+        word-spacing: 20px;
+        text-transform: capitalize;
+        background: url(/img/5.jpg) no-repeat center center/cover;
+        background-blend-mode:darken;
+        background-color: rgba(0, 0, 255, 0.384);
+    }
+    span:hover{
+        background-color: green;
+        color: red;
+        border-radius: 20px;
+    }    
+    main:hover button{
+        display: inline-block;
+        padding: 80px;
+        margin: 50px;
+        font-size: 25px;
+    }
+</style>
+</html>
